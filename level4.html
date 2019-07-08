@@ -1,0 +1,104 @@
+<html>
+<head>
+  <title>Girl Code</title>
+</head>
+<style>
+  body{
+    background-color: #E07B9C;
+    font-family: "Courier New", Courier, monospace;
+    color: #FFBBD5;
+  }
+
+  #screen{
+    z-index: -1;
+  }
+
+#output{
+  position: absolute;
+  top: 290px;
+  left: 10px;
+  color: black;
+}
+
+#img1{
+  position: absolute;
+  top: 390px;
+  left: 1100px;
+}
+
+#img2{
+  position: absolute;
+  top: 175px;
+  left: 1000px;
+}
+
+#motiv2{
+  position: absolute;
+  top: 230px;
+  left: 1035px;
+}
+
+#help2{
+  position: absolute;
+  top: 300px;
+  left: 1080px;
+}
+
+#tofinish{
+  position: absolute;
+  top: 5px;
+  left: 1250px;
+}
+
+  </style>
+
+<body>
+
+  <h1><center><font size = "25">Coding Challenge 4</font></center>
+    <!-- var text = document.getElementById('txtinput1').value; -->
+    <span style="color:white">  Directions: This coding challenge is different
+      from the others. Fill in the blank with any phrase you would like to <span style="color: #AEFFF2"> print </span>
+       on the screen! </span>
+
+       <p id = "tofinish"><a href="finish.html"><button>FINISH</button></a></p>
+       <p id = "img1"><img src="editedcharacter.png" alt="Character1" height="250" width="325"></p>
+       <p id = "img2"><img src="textbubble.png" alt="Character1" height="250" width="250"></p>
+       <p id = "motiv2"><font size = "5"> Type anything <br> you'd like! </font></p>
+       <p id= "help2"><button><a href="level4help.html"> Need Help?</a></button></p>
+
+       <br>
+       <br>
+       Print("<input style= "width:400px;" type="text" id="txtinput1">"); <input type="button" value="SUBMIT" onclick = "showInput()">
+    <br>
+    <br>
+
+    <p id = "output"><span id='display'></span></p>
+    <span style="color: black">
+    <p id = "screen"><img src="white.jpg" alt="screen" height="500" width="1000"></p>
+
+    <script>
+
+      var mySound = new sound("ding.mp3");
+      function showInput() {
+         document.getElementById('display').innerHTML =
+                     document.getElementById("txtinput1").value;
+          mySound.play();
+     }
+
+     function sound(src) {
+       this.sound = document.createElement("audio");
+       this.sound.src = src;
+       this.sound.setAttribute("preload", "auto");
+       this.sound.setAttribute("controls", "none");
+       this.sound.style.display = "none";
+       document.body.appendChild(this.sound);
+       this.play = function(){
+         this.sound.play();
+         }
+         this.stop = function(){
+           this.sound.pause();
+         }
+       }
+      </script>
+  </body>
+</html>

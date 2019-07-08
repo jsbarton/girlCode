@@ -1,0 +1,239 @@
+<!doctype HTML>
+<html>
+<head>
+<meta charset = "UTF-8">
+<title>Girl Code</title>
+</head>
+
+<style>
+
+body{
+  background-color: #E07B9C;
+  font-family: "Courier New", Courier, monospace;
+  color: #FFBBD5;
+}
+#container{
+  height : 100px;
+  width : 600px;
+  outline: 10px solid black;
+  position: relative;
+  left: 150px;
+}
+
+#container2{
+  height : 180px;
+  width : 340px;
+  position: relative;
+  left: 130px;
+  top: 110px;
+}
+
+#character{
+  position: absolute;
+  height: 50px;
+  width: 50px;
+  outline: 1px solid black;
+  background-color: pink;
+  left: 35px;
+  top: 25px
+}
+
+table, td {
+  z-index: -1;
+  border: 2px solid black;
+  border-collapse: collapse;
+}
+table#t1{
+  z-index: -1;
+  width: 600px;
+  height: 100px;
+  position: absolute;
+  bottom: 0.5px;
+
+}
+
+#tolevel2{
+  position: absolute;
+  top: 10px;
+  left: 1250px;
+}
+
+#start{
+  position: absolute;
+  top: 400px;
+  left: 20px;
+}
+
+#finish{
+  position: absolute;
+  top: 400px;
+  left: 780px;
+}
+
+#victory {
+  position: absolute;
+  top: 500px;
+  left: 350px;
+  display: none;
+  color: #AEFFF2
+}
+
+#yellow{
+  background-color: yellow;
+  display: none;
+}
+
+#img1{
+  position: absolute;
+  left: 970px;
+  top: 300px;
+}
+
+#img2{
+  position: absolute;
+  left: 850px;
+  top: 150px;
+}
+
+#motiv{
+  position: absolute;
+  left: 890px;
+  top: 190px;
+}
+
+#help{
+  position: absolute;
+  left: 930px;
+  top: 290px;
+}
+
+</style>
+
+<body>
+  <h1><center><font size ="25">Coding Challenge 1</font></center>
+
+<span style="color:white">  Directions: For this coding challenge, fill in the <span style="color:#AEFFF2">  if statement</span> with
+   the correct color of the boxes to execute the block of code. </span>
+<br>
+<br>
+  if (box is <input type="text" id="txtinput1">) {
+    <br>
+    <!-- <br> -->
+    <p id = "phrase2"><span style="display:inline-block; width: 15px;"></span> move forward; </p>
+    <p id = "img1"><img src="editedcharacter.png" alt="Character1" height="250" width="325"></p>
+    <p id = "img2"><img src="textbubble.png" alt="Character1" height="250" width="250"></p>
+    <p id = "motiv"><font size = "5"> Keep Going! <br> You're doing <br> great! </font></p>
+
+    <p id= "help"><button><a href="ifHelp.html"> Ask for Help!</button></a></p>
+
+    <!-- <br> -->
+  }
+  <input type="button" value="SUBMIT" onclick = "readBOX1()">
+  <br>
+  <br>
+
+
+<!-- #FFFD8C -->
+<p id = "tolevel2"><a href="level1.html"><button>Next Level</button></a></p>
+<p id = "start"> START </p>
+<p id = "finish"> FINISH </p>
+<p id = "victory"><font size ="20"> YOU WON!</font> </p>
+  <div id = "container">
+      <div id = "character"></div>
+      <div id = "container2"></div>
+      <table id = "t1">
+        <tr>
+            <div id= "yellow"><td bgcolor = "#AEFFF2"></td>
+            <td bgcolor = "#AEFFF2"></td>
+            <td bgcolor = "#AEFFF2"></td>
+            <td bgcolor = "#AEFFF2"></td>
+            <td bgcolor = "#AEFFF2"></td></div>
+        </tr>
+      </table>
+  </div>
+
+
+  <script>
+  var character = document.getElementById('character');
+  var characterLeft = 0;
+  var characterTop = 0;
+  var correct1 = false;
+  var mySound = new sound("ding.mp3");
+  var mySound2 = new sound("wrong.mp3");
+  // var myMusic;
+  //
+  //
+  // function startGame(){
+  //   var myMusic = new sound("gametheme.mp3");
+  //   myMusic.play();
+  // }
+
+  function success(){
+     var x = document.getElementById("victory");
+     if (correct1===true){
+        x.style.display = "block";
+        //x.style.transition = "background 5.0s linear 0s";
+    }
+    else{
+       x.style.display = "none";
+    }
+  }
+
+  function myMove1() {
+    var elem = document.getElementById('character');
+    var pos = 35;
+    var id = setInterval(frame, 5);
+    var leftFin = false;
+    function frame() {
+      if (pos == 515) {
+         clearInterval(id);
+       }else{
+           pos++;
+           elem.style.left = pos + "px";
+         }
+      }
+    }
+
+  function readBOX1(){
+    var txtinput1 = document.getElementById('txtinput1').value;
+
+    //alert("You typed " + txtinput);
+      if (txtinput1 == "blue"){
+        // characterTop -=-15;
+        // character.style.transition = "position 5.0s linear 0s";
+        // character.style.top = characterTop + 'px';
+        myMove1();
+
+        mySound.play();
+
+        // myMove2();
+        correct1 = true;
+
+      }
+      else{
+        mySound2.play();
+        alert("Sorry, try again!")
+      }
+      success();
+    }
+
+  function sound(src) {
+    this.sound = document.createElement("audio");
+    this.sound.src = src;
+    this.sound.setAttribute("preload", "auto");
+    this.sound.setAttribute("controls", "none");
+    this.sound.style.display = "none";
+    document.body.appendChild(this.sound);
+    this.play = function(){
+      this.sound.play();
+      }
+      this.stop = function(){
+        this.sound.pause();
+      }
+}
+
+
+
+  </script>
+</body>
+</html>
